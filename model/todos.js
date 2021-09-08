@@ -2,7 +2,7 @@ const Todo = require('../schemas/todo');
 
 const listTodos = async () => {
   const results = await Todo.find({});
-  return results;
+  return results.reverse();
 };
 
 const getTodoById = async todoId => {
