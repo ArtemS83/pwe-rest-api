@@ -14,25 +14,6 @@ const getAll = async (_req, res, next) => {
   }
 };
 
-const getById = async (req, res, next) => {
-  const todoId = req.params.todoId;
-  try {
-    const todo = await Todos.getTodoById(todoId);
-    if (todo) {
-      return res
-        .status(HttpCode.OK)
-        .json({ status: 'success', code: HttpCode.OK, data: { todo } }); // toJSON
-    }
-    return res.status(HttpCode.NOT_FOUND).json({
-      status: 'error',
-      code: HttpCode.NOT_FOUND,
-      message: 'Not found',
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 const create = async (req, res, next) => {
   try {
     const newTodo = await Todos.addTodo(req.body);
@@ -96,7 +77,6 @@ const updateStatus = async (req, res, next) => {
 
 module.exports = {
   getAll,
-  getById,
   create,
   remove,
   updateStatus,

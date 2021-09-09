@@ -5,11 +5,6 @@ const listTodos = async () => {
   return results.reverse();
 };
 
-const getTodoById = async todoId => {
-  const result = await Todo.findById(todoId);
-  return result;
-};
-
 const removeTodo = async todoId => {
   const result = await Todo.findByIdAndRemove(todoId);
   return result;
@@ -32,7 +27,6 @@ const updateStatusTodo = async (todoId, body) => {
 
 module.exports = {
   listTodos,
-  getTodoById,
   removeTodo,
   addTodo,
   updateStatusTodo,

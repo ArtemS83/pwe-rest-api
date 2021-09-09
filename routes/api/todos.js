@@ -9,8 +9,6 @@ const ctrlTodo = require('../../controllers/todos');
 
 router.get('/', ctrlTodo.getAll);
 
-router.get('/:todoId', validateObjectId, ctrlTodo.getById);
-
 router.post('/', validateAddTodo, ctrlTodo.create);
 
 router.delete('/:todoId', validateObjectId, ctrlTodo.remove);
