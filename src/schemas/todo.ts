@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose';
-
 import { ITodo } from '../interfaces/Todo.interface';
 
 const todoSchema = new mongoose.Schema(
@@ -31,6 +30,4 @@ const todoSchema = new mongoose.Schema(
   },
 );
 
-const Todo = mongoose.model<ITodo & Document>('todo', todoSchema);
-
-module.exports = Todo;
+export const Todo = mongoose.model<ITodo & Document>('todo', todoSchema);

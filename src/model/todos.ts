@@ -1,4 +1,4 @@
-const Todo = require('../schemas/todo');
+import { Todo } from '../schemas/todo';
 import { ITodo, INewTodo, ITodoStatus } from '../interfaces/Todo.interface';
 
 const listTodos = async () => {
@@ -26,7 +26,7 @@ const updateStatusTodo = async (todoId: string, body: ITodoStatus) => {
   return result;
 };
 
-module.exports = {
+export default {
   listTodos,
   removeTodo,
   addTodo,

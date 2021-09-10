@@ -1,5 +1,5 @@
 import app from '../app';
-const db = require('../model/db');
+import { db } from '../model/db';
 
 const PORT = process.env.PORT || 3000;
 

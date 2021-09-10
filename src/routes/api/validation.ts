@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const mongoose = require('mongoose');
+import Joi from 'Joi';
+import mongoose from 'mongoose';
 import { HttpCode } from '../../helpers/constants';
 import { Request, Response } from 'express';
 
@@ -35,11 +35,11 @@ const validateId = async (id: string, next: any) => {
   });
 };
 
-module.exports.validateAddTodo = (req: Request, _res: Response, next: any) => {
+export const validateAddTodo = (req: Request, _res: Response, next: any) => {
   return validate(schemaAddTodo, req.body, next);
 };
 
-module.exports.validateUpdateStatusTodo = (
+export const validateUpdateStatusTodo = (
   req: Request,
   _res: Response,
   next: any,
@@ -47,6 +47,6 @@ module.exports.validateUpdateStatusTodo = (
   return validate(schemaUpdateTodoStatus, req.body, next);
 };
 
-module.exports.validateObjectId = (req: Request, _res: Response, next: any) => {
+export const validateObjectId = (req: Request, _res: Response, next: any) => {
   return validateId(req.params.todoId, next);
 };

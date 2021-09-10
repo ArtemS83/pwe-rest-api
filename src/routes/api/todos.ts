@@ -1,11 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const {
+import express from 'express';
+import {
   validateAddTodo,
   validateUpdateStatusTodo,
   validateObjectId,
-} = require('./validation');
-const ctrlTodo = require('../../controllers/todos');
+} from './validation';
+import ctrlTodo from '../../controllers/todos';
+
+const router = express.Router();
 
 router.get('/', ctrlTodo.getAll);
 
@@ -20,4 +21,4 @@ router.patch(
   ctrlTodo.updateStatus,
 );
 
-module.exports = router;
+export default router;

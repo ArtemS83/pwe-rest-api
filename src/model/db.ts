@@ -1,9 +1,11 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const uriDb: string = process.env.URI_DB;
 
-const db = mongoose.connect(uriDb, {
+export const db = mongoose.connect(uriDb, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -29,5 +31,3 @@ process.on('SIGINT', async () => {
     process.exit();
   });
 });
-
-module.exports = db;

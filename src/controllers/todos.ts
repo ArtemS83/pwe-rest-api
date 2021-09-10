@@ -1,4 +1,4 @@
-const Todos = require('../model/todos');
+import Todos from '../model/todos';
 import { Request, Response } from 'express';
 import { ITodo } from '../interfaces/Todo.interface';
 import { HttpCode } from '../helpers/constants';
@@ -93,7 +93,7 @@ const updateStatus = async (
   }
 };
 
-module.exports = {
+export default {
   getAll,
   create,
   remove,
