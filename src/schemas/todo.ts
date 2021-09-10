@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+import * as mongoose from 'mongoose';
 
-const todoSchema = new Schema(
+import { ITodo } from '../interfaces/Todo.interface';
+
+const todoSchema = new mongoose.Schema(
   {
     description: {
       type: String,
@@ -19,14 +20,10 @@ const todoSchema = new Schema(
     timestamps: true,
     toObject: {
       virtuals: true,
-      // transform: function (_doc, ret) {
-      //   delete ret._id;
-      //   return ret;
-      // },
     },
     toJSON: {
       virtuals: true,
-      transform: function (_doc, ret) {
+      transform: function (_doc: any, ret: { _id: string }) {
         delete ret._id;
         return ret;
       },
@@ -34,6 +31,6 @@ const todoSchema = new Schema(
   },
 );
 
-const Todo = mongoose.model('todo', todoSchema);
+const Todo = mongoose.model<ITodo & Document>('todo', todoSchema);
 
 module.exports = Todo;
