@@ -1,9 +1,15 @@
 const Todos = require('../model/todos');
-const { HttpCode } = require('../helpers/constants');
+import { Request, Response } from 'express';
+import { ITodo } from '../interfaces/Todo.interface';
+import { HttpCode } from '../helpers/constants';
 
-const getAll = async (_req, res, next) => {
+const getAll = async (
+  _req: Request,
+  res: Response,
+  next: (arg0: any) => void,
+) => {
   try {
-    const todos = await Todos.listTodos();
+    const todos: ITodo[] = await Todos.listTodos();
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
@@ -14,9 +20,13 @@ const getAll = async (_req, res, next) => {
   }
 };
 
-const create = async (req, res, next) => {
+const create = async (
+  req: Request,
+  res: Response,
+  next: (arg0: any) => void,
+) => {
   try {
-    const newTodo = await Todos.addTodo(req.body);
+    const newTodo: ITodo = await Todos.addTodo(req.body);
     return res.status(HttpCode.CREATED).json({
       status: 'success',
       code: HttpCode.CREATED,
@@ -27,10 +37,14 @@ const create = async (req, res, next) => {
   }
 };
 
-const remove = async (req, res, next) => {
-  const todoId = req.params.todoId;
+const remove = async (
+  req: Request,
+  res: Response,
+  next: (arg0: any) => void,
+) => {
+  const todoId: string = req.params.todoId;
   try {
-    const todo = await Todos.removeTodo(todoId);
+    const todo: ITodo = await Todos.removeTodo(todoId);
     if (todo) {
       return res.status(HttpCode.OK).json({
         status: 'success',
@@ -48,8 +62,12 @@ const remove = async (req, res, next) => {
   }
 };
 
-const updateStatus = async (req, res, next) => {
-  const todoId = req.params.todoId;
+const updateStatus = async (
+  req: Request,
+  res: Response,
+  next: (arg0: any) => void,
+) => {
+  const todoId: string = req.params.todoId;
   try {
     if (typeof req.body.isDone === 'undefined') {
       return res.status(HttpCode.BAD_REQUEST).json({
@@ -58,7 +76,7 @@ const updateStatus = async (req, res, next) => {
         message: 'Missing field is Done!',
       });
     }
-    const todo = await Todos.updateStatusTodo(todoId, req.body);
+    const todo: ITodo = await Todos.updateStatusTodo(todoId, req.body);
     if (todo) {
       return res
         .status(HttpCode.OK)

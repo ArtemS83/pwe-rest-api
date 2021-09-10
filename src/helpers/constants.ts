@@ -1,4 +1,4 @@
-const HttpCode = {
+export const HttpCode = {
   OK: 200,
   CREATED: 201,
   NO_CONTENT: 204,
@@ -10,10 +10,8 @@ const HttpCode = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
-const Limit = {
+export const Limit = {
   MAX_JSON_SIZE_15KB: 15000,
   MAX_REQUEST_EACH_IP: 100,
-  TIME_15_MINUT: 15 * 60 * 1000,
+  TIME_15_MINUTES: 15 * 60 * 1000,
 };
-
-module.exports = { HttpCode, Limit };

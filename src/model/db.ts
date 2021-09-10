@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-const uriDb = process.env.URI_DB;
+
+const uriDb: string = process.env.URI_DB;
 
 const db = mongoose.connect(uriDb, {
   useNewUrlParser: true,
@@ -14,7 +15,7 @@ mongoose.connection.on('connected', () => {
   console.log('Database connection successful');
 });
 
-mongoose.connection.on('error', err => {
+mongoose.connection.on('error', (err: { message: string }) => {
   console.log(`Database connection error: ${err.message}`);
 });
 

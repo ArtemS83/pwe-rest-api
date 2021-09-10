@@ -1,11 +1,10 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
-
-const { HttpCode } = require('../../helpers/constants');
+import { HttpCode } from '../../helpers/constants';
+import { Request, Response } from 'express';
 
 const schemaAddTodo = Joi.object({
   description: Joi.string().optional(),
-
   isDone: Joi.optional(),
 }).min(1);
 
@@ -13,7 +12,7 @@ const schemaUpdateTodoStatus = Joi.object({
   isDone: Joi.required(),
 });
 
-const validate = async (schema, body, next) => {
+const validate = async (schema: any, body: any, next: any) => {
   try {
     await schema.validateAsync(body);
     next();
@@ -25,7 +24,7 @@ const validate = async (schema, body, next) => {
   }
 };
 
-const validateId = async (id, next) => {
+const validateId = async (id: string, next: any) => {
   if (await mongoose.isValidObjectId(id)) {
     next();
     return;
@@ -36,14 +35,18 @@ const validateId = async (id, next) => {
   });
 };
 
-module.exports.validateAddTodo = (req, _res, next) => {
+module.exports.validateAddTodo = (req: Request, _res: Response, next: any) => {
   return validate(schemaAddTodo, req.body, next);
 };
 
-module.exports.validateUpdateStatusTodo = (req, _res, next) => {
+module.exports.validateUpdateStatusTodo = (
+  req: Request,
+  _res: Response,
+  next: any,
+) => {
   return validate(schemaUpdateTodoStatus, req.body, next);
 };
 
-module.exports.validateObjectId = (req, _res, next) => {
+module.exports.validateObjectId = (req: Request, _res: Response, next: any) => {
   return validateId(req.params.todoId, next);
 };
