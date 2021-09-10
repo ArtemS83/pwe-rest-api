@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "tsc": "./node_modules/typescript/bin/tsc",
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
     "start": "cross-env NODE_ENV=production node ./src/bin/server.ts",
     "start:dev": "cross-env NODE_ENV=development nodemon ./src/bin/server.ts"
   },

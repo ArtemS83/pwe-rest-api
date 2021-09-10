@@ -1,4 +1,4 @@
-import Joi from 'Joi';
+import Joi from 'joi';
 import mongoose from 'mongoose';
 import { HttpCode } from '../../helpers/constants';
 import { Request, Response } from 'express';
